@@ -14,22 +14,21 @@ Following steps need to be taken to apply aspectj aspects in an existing Java ap
 2. Compile the @Aspect-annotated classes and put them to your application's classpath.
 
 3. Place `META-INF/aop.xml` file on your classpath:
-````
-<aspectj>
-    <aspects>
-        <!-- fully qualified names of @Aspect-annotated classes -->
-        <aspect name="aspects.PreparedStatementLogger"/>
-    </aspects>
 
-    <weaver options="-verbose -debug">
-        <!-- don't forget to include the packages with @Aspect-annotated classes -->
-        <include within="aspects.*"/>
+        <aspectj>
+            <aspects>
+                <!-- fully qualified names of @Aspect-annotated classes -->
+                <aspect name="aspects.PreparedStatementLogger"/>
+            </aspects>
 
-        <!-- restrict classes to apply the aspects to (for faster application startup) -->
-        <include within="net.sourceforge.jtds.jdbc.*"/>
-    </weaver>
-</aspectj>
-````
+            <weaver options="-verbose -debug">
+                <!-- don't forget to include the packages with @Aspect-annotated classes -->
+                <include within="aspects.*"/>
+
+                <!-- restrict classes to apply the aspects to (for faster application startup) -->
+                <include within="net.sourceforge.jtds.jdbc.*"/>
+            </weaver>
+        </aspectj>
 
 4. Download `aspectjweaver.jar` of appropriate version and start the target Java application with `-javaagent:/path_to_aspectjweaver.jar` argument.
 
